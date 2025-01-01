@@ -1,5 +1,25 @@
 # Configure the Cloudflare provider
 terraform {
+
+  backend "s3" {
+    bucket = "iac-tfstate"
+    key    = "terraform.tfstate"
+    region = "us-east-1" // cloudflare uses this as a filler: https://developers.cloudflare.com/r2/api/s3/api/#bucket-region
+    access_key = ""
+    secret_key = ""
+    endpoint = ""
+    skip_credentials_validation = true
+
+    # force_path_style            = true
+    # use_path_style              = true
+
+    # skip_region_validation = true
+    # skip_requesting_account_id  = true
+    # skip_metadata_api_check     = true
+    # skip_s3_checksum = true
+  
+  }
+
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
